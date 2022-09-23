@@ -1,0 +1,13 @@
+{% block content %}
+
+<h3>登入</h3>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form }}
+
+    <input class="btn btn-primary" type="submit" value="登入" />
+</form>
+<p><a href="/register/">註冊</a></p>
+
+{% endblock  %}

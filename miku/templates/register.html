@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>郵箱驗證</title>
+    <style>
+        input {
+            border-radius: 5%;
+            height: 40px;
+            box-shadow: 0 0 10px grey
+        }
+        #zemail {
+            display: inline-block;
+            width: 100px;
+            height: 40px;
+            box-shadow: 0 0 10px grey;
+            border-radius: 5%;
+            border: 2px black solid;
+            text-decoration: none;
+            text-align: center;
+            line-height: 40px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <p>
+        驗證碼：<input style="width: 100px" name="value" type="text" placeholder="請輸入驗證碼">
+        <label id="zemail">獲取驗證碼</label> <label style="color:red;" id="stat"></label>
+    </p>
+    <p><input style="width: 100px;height: 40px;margin-top: 30px" type="submit" value="註冊" ></p>
+</form>
+<p style="color:red">{{result.data}}</p>
+<p><a href="/">登入</a></p>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    $(function () {
+        $('#zemail').click(function () {  <!--獲取驗證碼按鈕添加點擊事件-->
+            email = $('#email').val();  <!--獲取輸入的郵箱-->
+            $.ajax(
+                {
+                    url:'/sendemail/?email='+email, 
+                    type:'get',
+                    data:'',
+                    success:function (data) {
+                        $('#stat').text(data['data'])
+                    }
+                }
+            )
+        })
+    })
+</script>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/i18n/zh-TW.js"></script>
+    <script type="text/javascript" src="../static/123.js"></script>
+    </head>
+    <body>
+        {% if request.user.is_authenticated %}
+            <p>
+              {{request.user}} 您已經登入囉~
+              <a href="/accounts/logout/">登出</a><br>
+              {%for i in miku%}
+              {{i.0}}-{{i.1}}-{{i.2}}<br>
+              {% endfor %}
+            </p>
+        {% else %}
+            <p>您尚未登入喔~<a href="/">登入</a></p>
+        {% endif %}
+    </body>
+</html>
